@@ -16,4 +16,6 @@ eval "$(rbenv init -)"
 export NVM_DIR="/Users/andrew.mcnamara/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-source $HOME/bin/proxy.sh
+#source $HOME/bin/proxy.sh
+#
+export EDITOR=vim
