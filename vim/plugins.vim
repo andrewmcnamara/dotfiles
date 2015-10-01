@@ -57,8 +57,6 @@ Plug 'JSON.vim'
 Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-markdown'
-Plug 'kchmck/vim-coffee-script'
-Plug 'vitaly/vim-syntastic-coffee'
 Plug 'vim-scripts/jade.vim'
 Plug 'wavded/vim-stylus'
 Plug 'slim-template/vim-slim'
@@ -68,10 +66,12 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'groenewege/vim-less'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'mtscout6/vim-cjsx'
-Plug 'vitaly/vim-literate-coffeescript'
-Plug 'rust-lang/rust', {'rtp': 'src/etc/vim/'}
+"Plug 'rust-lang/rust', {'rtp': 'src/etc/vim/'}
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+
+Plug 'miyakogi/conoline.vim'
+Plug 'miyakogi/slateblue.vim'
 
 " Add plugins to &runtimepath
 call plug#end()

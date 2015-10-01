@@ -19,3 +19,7 @@ export NVM_DIR="/Users/andrew.mcnamara/.nvm"
 #source $HOME/bin/proxy.sh
 #
 export EDITOR=vim
+
+alias tml='tmux list-sessions'
+alias tma='tmux -2 attach -t $1'
+alias tmk='tmux kill-session -t $1'

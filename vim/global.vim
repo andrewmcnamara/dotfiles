@@ -31,10 +31,16 @@ set title
 set pastetoggle=<F2>
 set hidden
 set vb
-set cursorline
+"set cursorline
 set background=dark
 set hidden              " enable multiple modified buffers
 set history=1000
+
+let g:conoline_auto_enable = 1
+"let g:conoline_use_colorscheme_default_insert=1
+let g:conoline_color_normal_dark = 'guibg=#333333 guifg=#dddddd gui=None '
+                           \. 'ctermbg=grey ctermfg=white'
+colorscheme slateblue
 
 " Enable syntax highlighting
 syntax enable
