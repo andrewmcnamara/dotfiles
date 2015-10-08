@@ -48,3 +48,7 @@ syntax enable
 "Key Mappings
 map <C-e> :NERDTreeTabsToggle<CR>
 map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
+
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
