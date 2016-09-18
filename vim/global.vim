@@ -46,8 +46,23 @@ colorscheme slateblue
 syntax enable
 
 "Key Mappings
+map <C-n> :NERDTreeToggle<CR>
 map <C-e> :NERDTreeTabsToggle<CR>
 map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+nmap     <C-F>l <Plug>CtrlSFQuickfixPrompt
+vmap     <C-F>l <Plug>CtrlSFQuickfixVwordPath
+vmap     <C-F>L <Plug>CtrlSFQuickfixVwordExec
 
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>

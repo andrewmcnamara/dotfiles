@@ -5,7 +5,7 @@ Plug 'kana/vim-textobj-user'
 " replacement for the repeat mapping (.) to support plugins
 Plug 'tpope/vim-repeat'
 " hide .gitignore-d files from vim
-Plug 'vitaly/vim-gitignore'
+"Plug 'vitaly/vim-gitignore'
 " repeat motion with <Space>
 Plug 'scrooloose/vim-space'
 " Github's gist support
@@ -17,7 +17,7 @@ Plug 'rstacruz/sparkup'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'skalnik/vim-vroom'
-Plug 'rking/ag.vim'
+"Plug 'rking/ag.vim'
 Plug 'bling/vim-airline'
 " commenting
 Plug 'scrooloose/nerdcommenter'
@@ -28,6 +28,7 @@ Plug 'AutoComplPop'
 Plug 'tpope/vim-surround'
 " vertical alignment tool
 Plug 'tsaleh/vim-align'
+Plug 'dyng/ctrlsf.vim'
 
 " Ruby/Rails
 " rails support
@@ -50,7 +51,7 @@ Plug 'josemarluedke/vim-rspec'
 Plug 'stefanoverna/vim-i18n'
 
 " syntax support
-Plug 'vim-ruby/vim-ruby'
+"Plug 'vim-ruby/vim-ruby'
 Plug 'tsaleh/vim-tmux'
 Plug 'Puppet-Syntax-Highlighting'
 Plug 'JSON.vim'
