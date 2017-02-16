@@ -2,6 +2,8 @@ set nocompatible
 syntax on
 filetype plugin indent on
 
+set path+=**
+set wildmenu
 set autoread
 let mapleader=","
 set nowrap        " don't wrap lines
@@ -17,11 +19,11 @@ set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
 set ignorecase    " ignore case when searching
 set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
-set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
+"set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
 set hlsearch      " highlight search terms
-set incsearch     " show search matches as you type
+"set incsearch     " show search matches as you type
 set showcmd             " Show (partial) command in status line.
-set showmatch           " Show matching brackets.
+"set showmatch           " Show matching brackets.
 set ruler               " line and column number of the cursor position
 set laststatus=2        " always show the status line
 set noswapfile
@@ -36,11 +38,12 @@ set background=dark
 set hidden              " enable multiple modified buffers
 set history=1000
 
-let g:conoline_auto_enable = 1
+let g:conoline_auto_enable = 0
 "let g:conoline_use_colorscheme_default_insert=1
 let g:conoline_color_normal_dark = 'guibg=#333333 guifg=#dddddd gui=None '
                            \. 'ctermbg=grey ctermfg=white'
-colorscheme slateblue
+"colorscheme slateblue
+colorscheme wombat
 
 " Enable syntax highlighting
 syntax enable
@@ -67,3 +70,5 @@ vmap     <C-F>L <Plug>CtrlSFQuickfixVwordExec
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
+command! MakeTags !tag_it 
+"ctags -R . --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)

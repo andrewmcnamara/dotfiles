@@ -1,1 +1,0 @@
-/Users/andrew.mcnamara/.dotfiles/vim
