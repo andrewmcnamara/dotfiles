@@ -12,13 +12,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'mattn/gist-vim'
 " web APIs support
 Plug 'mattn/webapi-vim'
-
+Plug 'tpope/vim-vinegar'
 Plug 'rstacruz/sparkup'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'jistr/vim-nerdtree-tabs'
 "Plug 'skalnik/vim-vroom'
-"Plug 'rking/ag.vim'
-Plug 'bling/vim-airline'
+Plug 'rking/ag.vim'
+"Plug 'bling/vim-airline'
+Plug 'itchyny/lightline.vim'
 " commenting
 Plug 'scrooloose/nerdcommenter'
 " fuzzy file open
@@ -74,6 +75,8 @@ Plug 'mxw/vim-jsx'
 Plug 'miyakogi/conoline.vim'
 Plug 'miyakogi/slateblue.vim'
 Plug 'flazz/vim-colorschemes'
+
+Plug 'rizzatti/dash.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
