@@ -30,6 +30,7 @@ Plug 'tpope/vim-surround'
 " vertical alignment tool
 Plug 'tsaleh/vim-align'
 Plug 'dyng/ctrlsf.vim'
+Plug 'EinfachToll/DidYouMean'
 
 " Ruby/Rails
 " rails support
@@ -53,6 +54,7 @@ Plug 'tpope/vim-rake'
 
 " syntax support
 Plug 'vim-ruby/vim-ruby'
+Plug 'kchmck/vim-coffee-script'
 "Plug 'tsaleh/vim-tmux'
 "Plug 'Puppet-Syntax-Highlighting'
 "Plug 'JSON.vim'
@@ -71,12 +73,17 @@ Plug 'elixir-lang/vim-elixir'
 ""Plug 'rust-lang/rust', {'rtp': 'src/etc/vim/'}
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'vim-syntastic/syntastic'
 
-Plug 'miyakogi/conoline.vim'
+"Plug 'miyakogi/conoline.vim'
 Plug 'miyakogi/slateblue.vim'
 Plug 'flazz/vim-colorschemes'
 
 Plug 'rizzatti/dash.vim'
+Plug 'tpope/vim-dispatch'
+
+"Plug 'hwartig/vim-seeing-is-believing'
+
 
 " Add plugins to &runtimepath
 call plug#end()

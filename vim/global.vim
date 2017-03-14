@@ -5,7 +5,7 @@ filetype plugin indent on
 set path+=**
 set wildmenu
 set autoread
-"let mapleader=","
+let mapleader=","
 set nowrap        " don't wrap lines
 set softtabstop=2
 set expandtab " Make tabs insert spaces
@@ -14,9 +14,9 @@ set backspace=indent,eol,start " allow backspacing over everything in insert mod
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
 set number        " always show line numbers
+"set relativenumber
 set shiftwidth=2  " number of spaces to use for autoindenting
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
-set showmatch     " set show matching parenthesis
 set ignorecase    " ignore case when searching
 set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
 "set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
@@ -40,13 +40,20 @@ set history=1000
 " Indent
 set ai
 set si
+set clipboard=unnamed " Use mac clipboard
+set mouse=a " Use mouse 
 
-let g:conoline_auto_enable = 0
+"let g:conoline_auto_enable = 0
 "let g:conoline_use_colorscheme_default_insert=1
-let g:conoline_color_normal_dark = 'guibg=#333333 guifg=#dddddd gui=None '
-                           \. 'ctermbg=grey ctermfg=white'
+"let g:conoline_color_normal_dark = 'guibg=#333333 guifg=#dddddd gui=None '
+"                           \. 'ctermbg=grey ctermfg=white'
 "colorscheme slateblue
-colorscheme wombat
+"colorscheme wombat
+colorscheme smyck
+
+"colorscheme spacegray
+"highlight CursorLine ctermbg=235
+"ighlight ColorColumn ctermbg=235
 
 " Enable syntax highlighting
 syntax enable
@@ -81,7 +88,7 @@ let g:ackprg = 'ag --vimgrep'
 "NEtrw 
 let g:netrw_liststyle = 3
 let g:netrw_altv = 1
-let g:netrw_winsize = 40
+let g:netrw_winsize = 30
 let g:netrw_preview=1           " open previews vertically
 
 " open files from netrw in a previous window, unless we're opening the current dir
@@ -92,3 +99,63 @@ else
 endif
 
 "autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
+"
+augroup number
+    autocmd!
+    au InsertEnter * set rnu
+    au InsertLeave * set nornu
+    " LineNr ctermfg=11 guifg=black  
+    " autocmd InsertEnter * highlight LineNr ctermfg=bg guifg=bg
+    ".autocmd InsertLeave * highlight LineNr ctermfg=11 guifg=black
+augroup end
+
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  set grepprg=ag\ --nogroup\ --nocolor
+end
+
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" Syntastic config
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_ruby_exec = '~/.rbenv/shims/ruby'
+
+"set splitbelow
+"set splitright
+
+
+" ===== Seeing Is Believing =====
+" Assumes you have a Ruby with SiB available in the PATH
+" If it doesn't work, you may need to `gem install seeing_is_believing -v 3.0.0.beta.6`
+" ...yeah, current release is a beta, which won't auto-install
+
+" Annotate every line
+  nmap <leader>b :%!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk<CR>;
+" Annotate marked lines
+  nmap <leader>n :%.!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk --xmpfilter-style<CR>;
+" Remove annotations
+  nmap <leader>c :%.!seeing_is_believing --clean<CR>;
+" Mark the current line for annotation
+  nmap <leader>m A # => <Esc>
+" Mark the highlighted lines for annotation
+  vmap <leader>m :norm A # => <Esc>
+
+
+"" Enable folding based on syntax rules
+"set foldmethod=syntax
+
+"" Adjust the highlighting
+"highlight Folded guibg=grey guifg=blue
+
+
+iab rsd require "spec_helper.rb"<CR>RSpec.describedo<CR>end<esc>k12li
