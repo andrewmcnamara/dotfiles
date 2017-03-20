@@ -39,6 +39,8 @@ Plug 'EinfachToll/DidYouMean'
 Plug 'tpope/vim-bundler'
 " rake integration
 Plug 'tpope/vim-rake'
+"Vim sugar for the UNIX shell commands that need it the most
+Plug 'tpope/vim-eunuch' 
 " A custom text object for selecting ruby blocks (ar/ir)
 "Plug 'nelstrom/vim-textobj-rubyblock'
 " ruby refactoring

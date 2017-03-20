@@ -1,5 +1,6 @@
 set nocompatible
-syntax on
+" Enable syntax highlighting
+syntax enable
 filetype plugin indent on
 
 set path+=**
@@ -14,12 +15,10 @@ set backspace=indent,eol,start " allow backspacing over everything in insert mod
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
 set number        " always show line numbers
-"set relativenumber
 set shiftwidth=2  " number of spaces to use for autoindenting
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set ignorecase    " ignore case when searching
 set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
-"set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
 set showcmd             " Show (partial) command in status line.
@@ -31,9 +30,7 @@ set nobackup
 set nowb
 set title
 set pastetoggle=<F2>
-set hidden
 set vb
-"set cursorline
 set background=dark
 set hidden              " enable multiple modified buffers
 set history=1000
@@ -42,23 +39,34 @@ set ai
 set si
 set clipboard=unnamed " Use mac clipboard
 set mouse=a " Use mouse 
+set showmode
+
+let g:ackprg = 'ag --vimgrep'
+"Use za to open folds
+"
+"{{{ Unused
+"set relativenumber
+"set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
+"set cursorline
+"set splitbelow
+"set splitright
 
 "let g:conoline_auto_enable = 0
 "let g:conoline_use_colorscheme_default_insert=1
 "let g:conoline_color_normal_dark = 'guibg=#333333 guifg=#dddddd gui=None '
 "                           \. 'ctermbg=grey ctermfg=white'
+"autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
+"}}}
+" Colours {{{
 "colorscheme slateblue
-"colorscheme wombat
-colorscheme smyck
+colorscheme wombat
+"colorscheme smyck
 
 "colorscheme spacegray
 "highlight CursorLine ctermbg=235
 "ighlight ColorColumn ctermbg=235
-
-" Enable syntax highlighting
-syntax enable
-
-"Key Mappings
+"}}}
+" Key Mappings {{{
 map <C-n> :Lex<CR>
 "map <C-n> :NERDTreeToggle<CR>
 "map <C-e> :NERDTreeTabsToggle<CR>
@@ -78,14 +86,13 @@ nmap     <C-F>l <Plug>CtrlSFQuickfixPrompt
 vmap     <C-F>l <Plug>CtrlSFQuickfixVwordPath
 vmap     <C-F>L <Plug>CtrlSFQuickfixVwordExec
 
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
-set showmode
-command! MakeTags !ctags
-nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
-let g:ackprg = 'ag --vimgrep'
 
-"NEtrw 
+" }}}
+"{{{ NEtrw 
 let g:netrw_liststyle = 3
 let g:netrw_altv = 1
 let g:netrw_winsize = 30
@@ -97,29 +104,15 @@ if argv(0) ==# '.'
 else
     let g:netrw_browse_split = 4
 endif
-
-"autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
-"
-augroup number
-    autocmd!
-    au InsertEnter * set rnu
-    au InsertLeave * set nornu
-    " LineNr ctermfg=11 guifg=black  
-    " autocmd InsertEnter * highlight LineNr ctermfg=bg guifg=bg
-    ".autocmd InsertLeave * highlight LineNr ctermfg=11 guifg=black
-augroup end
-
+"}}}
+"{{{ Ctrlp Settings
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   set grepprg=ag\ --nogroup\ --nocolor
 end
-
-
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" Syntastic config
+"}}}
+" Syntastic config {{{
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -129,12 +122,21 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_ruby_exec = '~/.rbenv/shims/ruby'
+"}}}
+" {{{ Custom Functions
+"
+command! MakeTags !ctags
 
-"set splitbelow
-"set splitright
-
-
-" ===== Seeing Is Believing =====
+augroup number
+    autocmd!
+    au InsertEnter * set rnu
+    au InsertLeave * set nornu
+    " LineNr ctermfg=11 guifg=black  
+    " autocmd InsertEnter * highlight LineNr ctermfg=bg guifg=bg
+    ".autocmd InsertLeave * highlight LineNr ctermfg=11 guifg=black
+augroup end
+"}}}
+"{{{ Seeing Is Believing =====
 " Assumes you have a Ruby with SiB available in the PATH
 " If it doesn't work, you may need to `gem install seeing_is_believing -v 3.0.0.beta.6`
 " ...yeah, current release is a beta, which won't auto-install
@@ -149,7 +151,7 @@ let g:syntastic_ruby_exec = '~/.rbenv/shims/ruby'
   nmap <leader>m A # => <Esc>
 " Mark the highlighted lines for annotation
   vmap <leader>m :norm A # => <Esc>
-
+"}}}
 
 "" Enable folding based on syntax rules
 "set foldmethod=syntax
@@ -159,3 +161,5 @@ let g:syntastic_ruby_exec = '~/.rbenv/shims/ruby'
 
 
 iab rsd require "spec_helper.rb"<CR>RSpec.describedo<CR>end<esc>k12li
+nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
+" vim:foldmethod=marker:foldlevel=0
