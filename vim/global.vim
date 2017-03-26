@@ -40,8 +40,11 @@ set si
 set clipboard=unnamed " Use mac clipboard
 set mouse=a " Use mouse 
 set showmode
+set foldlevel=1
+
 
 let g:ackprg = 'ag --vimgrep'
+"set tags+=tags,.tags
 "Use za to open folds
 "
 "{{{ Unused
@@ -85,6 +88,9 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 nmap     <C-F>l <Plug>CtrlSFQuickfixPrompt
 vmap     <C-F>l <Plug>CtrlSFQuickfixVwordPath
 vmap     <C-F>L <Plug>CtrlSFQuickfixVwordExec
+
+map <leader>fi :setlocal foldmethod=indent<cr>
+map <leader>fs :setlocal foldmethod=syntax<cr>
 
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>

@@ -53,6 +53,7 @@ Plug 'tpope/vim-eunuch'
 "Plug 'josemarluedke/vim-rspec'
 " i18n extraction plugin
 "Plug 'stefanoverna/vim-i18n'
+"Plug 'Shougo/deoplete.nvim' 
 
 " syntax support
 Plug 'vim-ruby/vim-ruby'
