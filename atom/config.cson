@@ -1,0 +1,14 @@
+"*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "ea3bcd44-0067-4070-9e50-d25f1eac8783"
+    ruby:
+      indent_size: 2
+  core:
+    telemetryConsent: "no"
+  editor:
+    fontFamily: "Fira Code"
+  "exception-reporting":
+    userId: "9591f7f8-73d0-04dc-e9a0-c4368de96321"
+  welcome:
+    showOnStartup: false
