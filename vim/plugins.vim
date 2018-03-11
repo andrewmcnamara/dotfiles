@@ -64,7 +64,7 @@ Plug 'kchmck/vim-coffee-script'
 "Plug 'Puppet-Syntax-Highlighting'
 "Plug 'JSON.vim'
 "Plug 'tpope/vim-cucumber'
-"Plug 'tpope/vim-haml'
+Plug 'tpope/vim-haml'
 Plug 'tpope/vim-markdown'
 "Plug 'vim-scripts/jade.vim'
 "Plug 'wavded/vim-stylus'
@@ -90,6 +90,7 @@ Plug 'tpope/vim-dispatch'
 
 "Plug 'hwartig/vim-seeing-is-believing'
 
+Plug 'w0rp/ale'
 
 " Add plugins to &runtimepath
 call plug#end()
