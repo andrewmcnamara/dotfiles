@@ -88,6 +88,7 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 nmap     <C-F>l <Plug>CtrlSFQuickfixPrompt
 vmap     <C-F>l <Plug>CtrlSFQuickfixVwordPath
 vmap     <C-F>L <Plug>CtrlSFQuickfixVwordExec
+nnoremap <C-P> :Files<CR>
 
 map <leader>fi :setlocal foldmethod=indent<cr>
 map <leader>fs :setlocal foldmethod=syntax<cr>
@@ -169,3 +170,11 @@ augroup end
 iab rsd require "spec_helper.rb"<CR>RSpec.describedo<CR>end<esc>k12li
 nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 " vim:foldmethod=marker:foldlevel=0
+let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+let g:fzf_tags_command = 'ctags -R'
+" map key to command
+map <leader>f :Find<space>
+"command! -bang -nargs=* Find call fzf#vim#grep( 'rg --column --line-number --no-heading
+"command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+set wildignore+=**/node_modules/*,_build/*,deps*

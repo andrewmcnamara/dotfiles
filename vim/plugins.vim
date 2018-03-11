@@ -23,7 +23,9 @@ Plug 'itchyny/lightline.vim'
 " commenting
 Plug 'scrooloose/nerdcommenter'
 " fuzzy file open
-Plug 'kien/ctrlp.vim'
+"Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " popup completion menu
 "Plug 'AutoComplPop'
 Plug 'tpope/vim-surround'
@@ -68,6 +70,7 @@ Plug 'tpope/vim-markdown'
 "Plug 'wavded/vim-stylus'
 Plug 'slim-template/vim-slim'
 Plug 'elixir-lang/vim-elixir'
+Plug 'slashmili/alchemist.vim'
 "Plug 'Blackrush/vim-gocode'
 "Plug 'ekalinin/Dockerfile.vim'
 "Plug 'groenewege/vim-less'
@@ -76,7 +79,7 @@ Plug 'elixir-lang/vim-elixir'
 ""Plug 'rust-lang/rust', {'rtp': 'src/etc/vim/'}
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 
 "Plug 'miyakogi/conoline.vim'
 Plug 'miyakogi/slateblue.vim'
