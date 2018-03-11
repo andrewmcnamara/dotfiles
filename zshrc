@@ -1,42 +1,44 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+# ZSH history
+setopt append_history
+setopt hist_expire_dups_first
+setopt hist_fcntl_lock
+setopt hist_ignore_all_dups
+setopt hist_lex_words
+setopt hist_reduce_blanks
+setopt hist_ignore_space
+setopt inc_append_history
+setopt hist_save_no_dups
+setopt share_history
 
-# Customize to your needs...
-eval "$(rbenv init -)"
+export HISTSIZE=11000
+export SAVEHIST=10000
+export HISTFILE=~/.zsh_history
 
-#source /usr/local/opt/chruby/share/chruby/chruby.sh
-#source /usr/local/opt/chruby/share/chruby/auto.sh
-
-RUBIES+=(~/.rbenv/versions/*)
-
-#export NVM_DIR="/Users/andrew.mcnamara/.nvm"
-#. $(brew --prefix nvm)/nvm.sh
+# ZPLUG
+source ~/dotfiles/zplug
 
 #source $HOME/bin/proxy.sh
 #
-#
-#if [[ ! -d ~/.zplug ]];then
-##    git clone https://github.com/b4b4r07/zplug ~/.zplug
-#fi
-#
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
+export GOPATH=~/go
+export EDITOR=vim
+export VISUAL=atom
 
-# Async for zsh, used by pure
-zplug "mafredri/zsh-async", from:github, defer:0
-# Load completion library for those sweet [tab] squares
-zplug "lib/completion", from:oh-my-zsh
-# Syntax highlighting for commands, load last
-zplug "zsh-users/zsh-syntax-highlighting", from:github, defer:3
-# Theme!
-zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+if test -f ~/.gnupg/.gpg-agent-info -a -n "$(pgrep gpg-agent)"; then
+#  source ~/.gnupg/.gpg-agent-info
+# export GPG_AGENT_INFO
+  GPG_TTY=$(tty)
+  export GPG_TTY
+else
+  eval $(gpg-agent --daemon)
+fi
 
-zplug load
 
+alias tml='tmux list-sessions'
+alias tma='tmux -2 attach -t $1'
+alias tmk='tmux kill-session -t $1'
+alias be='bundle exec'
+
+export ANDROID_HOME=/usr/local/opt/android-sdk
 
 function cv() {
 fzf --preview '[[ $(file --mime {}) =~ binary ]] &&
@@ -53,12 +55,11 @@ export FZF_DEFAULT_COMMAND='
    find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
       sed s/^..//) 2> /dev/null'
 
-export EDITOR=vim
-export VISUAL=atom
+export PATH="/usr/local/bin:$HOME/.bin:$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin"
 
-alias tml='tmux list-sessions'
-alias tma='tmux -2 attach -t $1'
-alias tmk='tmux kill-session -t $1'
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
 
-export ANDROID_HOME=/usr/local/opt/android-sdk
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
