@@ -16,7 +16,7 @@ export HISTFILE=~/.zsh_history
 
 # ZPLUG
 source ~/dotfiles/zplug
-
+source ~/dotfiles/aliases
 #source $HOME/bin/proxy.sh
 #
 export GOPATH=~/go

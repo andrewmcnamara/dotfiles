@@ -30,52 +30,32 @@ set nobackup
 set nowb
 set title
 set pastetoggle=<F2>
-set vb
+set visualbell
 set background=dark
 set hidden              " enable multiple modified buffers
 set history=1000
 " Indent
 set ai
 set si
-set clipboard=unnamed " Use mac clipboard
-set mouse=a " Use mouse 
+set clipboard=unnamed,unnamedplus " Use mac clipboard
+set go+=a "  autocopy selection
+"set mouse=a " Use mouse 
 set showmode
 set foldlevel=1
 
 
-let g:ackprg = 'ag --vimgrep'
+set grepprg=rg\ --vimgrep
 "set tags+=tags,.tags
 "Use za to open folds
-"
-"{{{ Unused
-"set relativenumber
-"set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
-"set cursorline
-"set splitbelow
-"set splitright
 
-"let g:conoline_auto_enable = 0
-"let g:conoline_use_colorscheme_default_insert=1
-"let g:conoline_color_normal_dark = 'guibg=#333333 guifg=#dddddd gui=None '
-"                           \. 'ctermbg=grey ctermfg=white'
-"autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
-"}}}
 " Colours {{{
 "colorscheme slateblue
 colorscheme wombat
 "colorscheme smyck
 
-"colorscheme spacegray
-"highlight CursorLine ctermbg=235
-"ighlight ColorColumn ctermbg=235
-"}}}
 " Key Mappings {{{
 map <C-n> :Lex<CR>
-"map <C-n> :NERDTreeToggle<CR>
-"map <C-e> :NERDTreeTabsToggle<CR>
 map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
 
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
@@ -112,24 +92,7 @@ else
     let g:netrw_browse_split = 4
 endif
 "}}}
-"{{{ Ctrlp Settings
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  set grepprg=ag\ --nogroup\ --nocolor
-end
-"}}}
-" Syntastic config {{{
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_ruby_exec = '~/.rbenv/shims/ruby'
-"}}}
 " {{{ Custom Functions
 "
 command! MakeTags !ctags
@@ -143,6 +106,7 @@ augroup number
     ".autocmd InsertLeave * highlight LineNr ctermfg=11 guifg=black
 augroup end
 "}}}
+
 "{{{ Seeing Is Believing =====
 " Assumes you have a Ruby with SiB available in the PATH
 " If it doesn't work, you may need to `gem install seeing_is_believing -v 3.0.0.beta.6`
@@ -170,11 +134,40 @@ augroup end
 iab rsd require "spec_helper.rb"<CR>RSpec.describedo<CR>end<esc>k12li
 nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 " vim:foldmethod=marker:foldlevel=0
-let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+"let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 let g:fzf_tags_command = 'ctags -R'
 " map key to command
 map <leader>f :Find<space>
-"command! -bang -nargs=* Find call fzf#vim#grep( 'rg --column --line-number --no-heading
-"command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+if executable('fzf')
+  " FZF {{{
+  " <C-p> or <C-t> to search files
+  nnoremap <silent> <C-t> :FZF -m<cr>
+  nnoremap <silent> <C-p> :FZF -m<cr>
+
+  " <M-p> for open buffers
+  nnoremap <silent> <M-p> :Buffers<cr>
+
+  " <M-S-p> for MRU
+  nnoremap <silent> <M-S-p> :History<cr>
+
+  " Use fuzzy completion relative filepaths across directory
+  imap <expr> <c-x><c-f> fzf#vim#complete#path('git ls-files $(git rev-parse --show-toplevel)')
+
+  " Better command history with q:
+  command! CmdHist call fzf#vim#command_history({'right': '40'})
+  nnoremap q: :CmdHist<CR>
+
+  " Better search history
+  command! QHist call fzf#vim#search_history({'right': '40'})
+  nnoremap q/ :QHist<CR>
+  "let g:fzf_layout = { 'window': 'enew' }
+  command! -bang -nargs=* Ack call fzf#vim#ag(<q-args>, {'down': '40%', 'options': --no-color'})
+  " }}}
+else
+  " CtrlP fallback
+end
 
 set wildignore+=**/node_modules/*,_build/*,deps*
+nnoremap <leader>d :call fzf#vim#tags(expand('<cword>'), {'options': '--exact --select-1 --exit-0'})<CR>
+

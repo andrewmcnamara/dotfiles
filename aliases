@@ -1,0 +1,6 @@
+alias tml='tmux list-sessions'
+alias tma='tmux -2 attach -t $1'
+alias tmk='tmux kill-session -t $1'
+alias be='bundle exec'
+alias cop_it='git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs rubocop -a'
+alias c='coderay $1'
