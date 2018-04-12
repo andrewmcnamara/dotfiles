@@ -50,7 +50,7 @@ set grepprg=rg\ --vimgrep
 
 " Colours {{{
 "colorscheme slateblue
-colorscheme wombat
+colorscheme badwolf
 "colorscheme smyck
 
 " Key Mappings {{{
@@ -170,4 +170,6 @@ end
 
 set wildignore+=**/node_modules/*,_build/*,deps*
 nnoremap <leader>d :call fzf#vim#tags(expand('<cword>'), {'options': '--exact --select-1 --exit-0'})<CR>
+
+
 

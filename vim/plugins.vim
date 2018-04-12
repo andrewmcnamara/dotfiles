@@ -11,6 +11,9 @@ Plug 'flazz/vim-colorschemes'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
+"Plug 'ludovicchabant/vim-gutentags'
+
+
 " Plug 'w0rp/ale'
 
 " Add plugins to &runtimepath

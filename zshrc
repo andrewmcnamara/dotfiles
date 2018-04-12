@@ -21,7 +21,7 @@ source ~/dotfiles/aliases
 #
 export GOPATH=~/go
 export EDITOR=vim
-export VISUAL=atom
+export VISUAL=vim
 
 if test -f ~/.gnupg/.gpg-agent-info -a -n "$(pgrep gpg-agent)"; then
 #  source ~/.gnupg/.gpg-agent-info
