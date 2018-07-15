@@ -16,6 +16,7 @@ export HISTFILE=~/.zsh_history
 
 # ZPLUG
 source ~/dotfiles/zplug
+#source ~/dotfiles/zplugin
 source ~/dotfiles/aliases
 #source $HOME/bin/proxy.sh
 #
@@ -40,6 +41,16 @@ alias be='bundle exec'
 
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
+
+# fbr - checkout git branch, sorted by most recent commit, limit 30 occurences
+fbr() {
+  local branches branch
+  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+    branch=$(echo "$branches" |
+  fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+    git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
 function cv() {
 fzf --preview '[[ $(file --mime {}) =~ binary ]] &&
                  echo {} is a binary file ||
@@ -49,17 +60,31 @@ fzf --preview '[[ $(file --mime {}) =~ binary ]] &&
                   cat {}) 2> /dev/null | head -500'
 }
 
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
+#export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+#export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --exclude .git'
 #export FZF_DEFAULT_COMMAND='rg --files --hidden --smartcase --glob "!.git/*"'
-export FZF_DEFAULT_COMMAND='
-  (git ls-tree -r --name-only HEAD ||
-   find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
-      sed s/^..//) 2> /dev/null'
+#export FZF_DEFAULT_COMMAND='
+#  (git ls-tree -r --name-only HEAD ||
+#   find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
+#      sed s/^..//) 2> /dev/null'
+
+#bind -x '"\C-p": vim $(fzf);'
 
 export PATH="/usr/local/bin:$HOME/.bin:$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin"
 
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
 
+chruby `cat ~/projects/crowdcontrol/.ruby-version`
+source /usr/local/opt/asdf/asdf.sh
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+### Added by Zplugin's installer
+#source '/Users/amcnamara/.zplugin/bin/zplugin.zsh'
+#autoload -Uz _zplugin
+#(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of Zplugin's installer chunk
