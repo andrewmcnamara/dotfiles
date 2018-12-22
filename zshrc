@@ -76,8 +76,7 @@ export PATH="/usr/local/bin:$HOME/.bin:$PATH:/usr/local/opt/go/libexec/bin:$GOPA
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
 
-chruby `cat ~/projects/crowdcontrol/.ruby-version`
-source /usr/local/opt/asdf/asdf.sh
+chruby $(<~/.ruby-version)
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -88,3 +87,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 #autoload -Uz _zplugin
 #(( ${+_comps} )) && _comps[zplugin]=_zplugin
 ### End of Zplugin's installer chunk
+source /usr/local/opt/asdf/asdf.sh

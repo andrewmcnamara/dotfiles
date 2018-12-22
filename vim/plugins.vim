@@ -13,6 +13,11 @@ Plug 'flazz/vim-colorschemes'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
+Plug 'SirVer/ultisnips'
+
+Plug 'sudar/vim-arduino-syntax'
+Plug 'sudar/vim-arduino-snippets'
+
 "Plug 'ludovicchabant/vim-gutentags'
 
 " Check that copy and paste from clipboard still work

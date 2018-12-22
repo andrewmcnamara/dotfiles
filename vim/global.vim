@@ -191,6 +191,8 @@ autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --
 autocmd BufWritePost *.rb AsyncRun -post=checktime rubocop -a %
 
 
+command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
