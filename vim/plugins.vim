@@ -25,5 +25,9 @@ Plug 'w0rp/ale'
 
 Plug 'junegunn/fzf.vim'
 
+Plug 'zxqfl/tabnine-vim'
+
+Plug 'metakirby5/codi.vim'
+
 " Add plugins to &runtimepath
 call plug#end()

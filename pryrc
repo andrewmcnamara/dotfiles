@@ -16,12 +16,20 @@ def a_hash
   {hello: "world", free: "of charge"}
 end
 
+def a_researcher(email: 'andy@example.com')
+  User.find_by(email: email);
+end
+
+def a_tracker_user(email: 'andrew@bugcrowd.com')
+  TrackerUser.find_by(email: email);
+end
 
 begin
   spec = Gem::Specification.find_all_by_name('awesome_print').first
 
-  #$LOAD_PATH << "#{spec.full_gem_path}/lib"
-  $LOAD_PATH << "/Users/amcnamara/.gem/ruby/2.3.6/gems/awesome_print-1.8.0/lib"
+#  $LOAD_PATH << "#{spec.full_gem_path}/lib"
+  #$LOAD_PATH << "/Users/amcnamara/.gem/ruby/2.3.6/gems/awesome_print-1.8.0/lib"
+  require "rubygems"
   require 'awesome_print'
   # Pry.config.print = proc { |output, value| output.puts value.ai }
   AwesomePrint.pry!

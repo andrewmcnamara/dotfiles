@@ -21,7 +21,7 @@ zplug "unixorn/rake-completion.zshplugin"
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'unixorn/rake-completion.zshplugin'
 zplug 'wfxr/forgit', defer:1
-
+zplug "djui/alias-tips"
 
 #zplug 'dracula/zsh', as:theme
 

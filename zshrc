@@ -72,6 +72,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 #bind -x '"\C-p": vim $(fzf);'
 
 export PATH="/usr/local/bin:$HOME/.bin:$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin"
+export PGHOST=localhost
 
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
@@ -88,3 +89,18 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 #(( ${+_comps} )) && _comps[zplugin]=_zplugin
 ### End of Zplugin's installer chunk
 source /usr/local/opt/asdf/asdf.sh
+#
+#
+# Codi
+# Usage: codi [filetype] [filename]
+codi() {
+  local syntax="${1:-javascript}"
+  shift
+  vim -c \
+    "let g:startify_disable_at_vimenter = 1 |\
+    set bt=nofile ls=0 noru nonu nornu |\
+    hi ColorColumn ctermbg=NONE |\
+    hi VertSplit ctermbg=NONE |\
+    hi NonText ctermfg=0 |\
+    Codi $syntax" "$@"
+}

@@ -1,0 +1,19 @@
+export ZPLUGIN_HOME=~/.zplugin
+source $ZPLUGIN_HOME/bin/zplugin.zsh
+
+#zplug "plugins/brew", from:oh-my-zsh
+#zplug "plugins/brew-cask", from:oh-my-zsh
+zplugin snippet OMZ::plugins/git/git.plugin.zsh
+zplugin snippet OMZ::plugins/osx/osx.plugin.zsh
+zplugin snippet OMZ::plugins/colorize/colorize.plugin.zsh
+zplugin load "zsh-users/zsh-completions"
+zplugin load "zsh-users/zsh-history-substring-search"
+zplugin load "zsh-users/zsh-syntax-highlighting"
+zplugin load "mafredri/zsh-async"
+zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
+zplugin load "b4b4r07/emoji-cli"
+zplugin load "unixorn/rake-completion.zshplugin"
+
+#zplug 'dracula/zsh', as:theme
+
+# Install plugins if there are plugins that have not been installed
