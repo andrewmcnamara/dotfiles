@@ -71,13 +71,11 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 
 #bind -x '"\C-p": vim $(fzf);'
 
-export PATH="/usr/local/bin:$HOME/.bin:$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin"
-export PGHOST=localhost
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
+# source /usr/local/opt/chruby/share/chruby/chruby.sh
+# source /usr/local/opt/chruby/share/chruby/auto.sh
 
-chruby $(<~/.ruby-version)
+# chruby $(<~/.ruby-version)
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -88,6 +86,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 #autoload -Uz _zplugin
 #(( ${+_comps} )) && _comps[zplugin]=_zplugin
 ### End of Zplugin's installer chunk
+export PATH="/usr/local/bin:$HOME/.bin:$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin"
+export PGHOST=localhost
 source /usr/local/opt/asdf/asdf.sh
 #
 #
