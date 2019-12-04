@@ -1,0 +1,6 @@
+if filereadable(expand("~/dotfiles/vim-new/plugins.vim"))
+  source ~/dotfiles/vim-new/plugins.vim
+endif
+if filereadable(expand("~/dotfiles/vim-new/global.vim"))
+   source ~/dotfiles/vim-new/global.vim
+endif
