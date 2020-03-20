@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
 
 Plug 'sheerun/vim-polyglot'
+"Plug 'maxmellon/vim-jsx-pretty'
 
 "Plug 'tpope/vim-dispatch'
 "Plug 'tpope/vim-dispatch'
@@ -25,9 +26,18 @@ Plug 'w0rp/ale'
 
 Plug 'junegunn/fzf.vim'
 
-Plug 'zxqfl/tabnine-vim'
+"Plug 'zxqfl/tabnine-vim'
 
 Plug 'metakirby5/codi.vim'
 
+Plug 'dracula/vim', { 'as': 'dracula' }
+
+" Use release branch (Recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Dev icons
+Plug 'ryanoasis/vim-devicons'
+
 " Add plugins to &runtimepath
 call plug#end()
+

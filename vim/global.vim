@@ -34,15 +34,24 @@ set visualbell
 set background=dark
 set hidden              " enable multiple modified buffers
 set history=1000
+set encoding=UTF-8
 " Indent
 set ai
 set si
 set clipboard=unnamed,unnamedplus " Use mac clipboard
 set go+=a "  autocopy selection
-"set mouse=a " Use mouse 
+"set mouse=a " Use mouse
 set showmode
 set foldlevel=1
 
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+set updatetime=300
+set shortmess+=c
+
+
+let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
 set grepprg=rg\ --vimgrep
 "set tags+=tags,.tags
@@ -51,7 +60,8 @@ set grepprg=rg\ --vimgrep
 " Colours {{{
 "colorscheme slateblue
 "colorscheme badwolf
-colorscheme jellybeans
+"colorscheme jellybeans
+colorscheme dracula
 "colorscheme smyck
 
 " Key Mappings {{{
@@ -80,7 +90,7 @@ nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 
 " }}}
-"{{{ NEtrw 
+"{{{ NEtrw
 let g:netrw_liststyle = 3
 let g:netrw_altv = 1
 let g:netrw_winsize = 30
@@ -102,7 +112,7 @@ augroup number
     autocmd!
     au InsertEnter * set rnu
     au InsertLeave * set nornu
-    " LineNr ctermfg=11 guifg=black  
+    " LineNr ctermfg=11 guifg=black
     " autocmd InsertEnter * highlight LineNr ctermfg=bg guifg=bg
     ".autocmd InsertLeave * highlight LineNr ctermfg=11 guifg=black
 augroup end
