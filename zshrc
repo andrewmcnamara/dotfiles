@@ -59,8 +59,9 @@ fzf --preview '[[ $(file --mime {}) =~ binary ]] &&
                   rougify {} ||
                   cat {}) 2> /dev/null | head -500'
 }
-
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
+export FZF_DEFAULT_OPTS='--color=dark --color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f --color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7'
 #export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 #export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --exclude .git'
 #export FZF_DEFAULT_COMMAND='rg --files --hidden --smartcase --glob "!.git/*"'
@@ -109,4 +110,6 @@ function iterm2_print_user_vars() {
   iterm2_set_user_var rubyVersion $(ruby -v | awk '{ print $2 }')
   iterm2_set_user_var nodeVersion $(node -v)
 }
+#eval "$(starship init zsh)"
+
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

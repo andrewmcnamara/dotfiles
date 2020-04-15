@@ -6,7 +6,7 @@ filetype plugin indent on
 set path+=**
 set wildmenu
 set autoread
-let mapleader=","
+let mapleader=" "
 set nowrap        " don't wrap lines
 set softtabstop=2
 set expandtab " Make tabs insert spaces
@@ -43,6 +43,8 @@ set go+=a "  autocopy selection
 "set mouse=a " Use mouse
 set showmode
 set foldlevel=1
+set undodir=~/.vim/undodir
+set undofile
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -52,6 +54,13 @@ set shortmess+=c
 
 
 let g:vim_jsx_pretty_colorful_config = 1 " default 0
+
+" Mappings for moving lines and preserving indentation
+" http://vim.wikia.com/wiki/Moving_lines_up_or_down
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
 set grepprg=rg\ --vimgrep
 "set tags+=tags,.tags
@@ -65,7 +74,17 @@ colorscheme dracula
 "colorscheme smyck
 
 " Key Mappings {{{
-map <C-n> :Lex<CR>
+"map <C-n> :Lex<CR>
+"
+nmap <leader>h :wincmd h<CR>
+nmap <leader>j :wincmd j<CR>
+nmap <leader>k :wincmd k<CR>
+nmap <leader>l :wincmd l<CR>
+nmap <leader>u :UndotreeShow<CR>
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeMinimalUI = 1
+nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
+
 map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 
 nmap     <C-F>f <Plug>CtrlSFPrompt
@@ -140,6 +159,12 @@ augroup end
 
 "" Adjust the highlighting
 "highlight Folded guibg=grey guifg=blue
+" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
 
 
 iab rsd require "spec_helper.rb"<CR>RSpec.describedo<CR>end<esc>k12li
@@ -173,7 +198,16 @@ if executable('fzf')
   command! QHist call fzf#vim#search_history({'right': '40'})
   nnoremap q/ :QHist<CR>
   "let g:fzf_layout = { 'window': 'enew' }
-  command! -bang -nargs=* Ack call fzf#vim#ag(<q-args>, {'down': '40%', 'options': --no-color'})
+  " command! -bang -nargs=* Ack call fzf#vim#ag(<q-args>, {'down': '40%', 'options': --no-color'})
+  function! RipgrepFzf(query, fullscreen)
+    let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+    let initial_command = printf(command_fmt, shellescape(a:query))
+    let reload_command = printf(command_fmt, '{q}')
+    let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+  endfunction
+
+  command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
   " }}}
 else
   " CtrlP fallback

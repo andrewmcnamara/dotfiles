@@ -1,4 +1,5 @@
 set nocompatible
+set guifont=Fira\ Code:h14
 if filereadable(expand("~/.vim/plugins.vim"))
   source ~/.vim/plugins.vim
 endif
