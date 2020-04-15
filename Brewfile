@@ -1,6 +1,7 @@
 tap "buo/cask-upgrade"
 tap "eugenmayer/dockersync"
 tap "getantibody/tap"
+tap "github/gh"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
@@ -18,11 +19,9 @@ tap "wagoodman/dive"
 brew "automake"
 brew "coreutils"
 brew "libyaml"
-brew "openssl"
 brew "readline"
 brew "asdf"
 brew "gdbm"
-brew "python"
 brew "awscli"
 brew "bat"
 brew "bison"
@@ -44,6 +43,7 @@ brew "libffi"
 brew "unbound"
 brew "go"
 brew "gpg-agent"
+brew "python"
 brew "graphviz"
 brew "hadolint"
 brew "httpie"
@@ -54,6 +54,7 @@ brew "lynx"
 brew "markdown"
 brew "mas"
 brew "mitmproxy"
+brew "mkcert"
 brew "mysql"
 brew "n"
 brew "neovim"
@@ -69,6 +70,8 @@ brew "pinentry-mac"
 brew "postgresql"
 brew "qrencode"
 brew "qt"
+brew "ranger"
+brew "rbspy"
 brew "reattach-to-user-namespace"
 brew "redis"
 brew "ripgrep"
@@ -76,6 +79,7 @@ brew "ruby"
 brew "ruby-build"
 brew "ruby-install"
 brew "rustup-init"
+brew "starship"
 brew "terraform"
 brew "thefuck"
 brew "unison"
@@ -83,23 +87,27 @@ brew "vim"
 brew "zsh"
 brew "eugenmayer/dockersync/unox"
 brew "getantibody/tap/antibody"
+brew "github/gh/gh"
 brew "jesseduffield/lazydocker/lazydocker"
 brew "thoughtbot/formulae/gitsh"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 brew "wagoodman/dive/dive"
 cask "aws-vault"
 cask "bitbar"
+cask "brave-browser"
 cask "cheatsheet"
 cask "chromedriver"
 cask "cyberduck"
 cask "datagrip"
 cask "dozer"
+cask "figma"
 cask "font-fantasque-sans-mono"
 cask "font-fira-code"
 cask "font-fira-mono"
 cask "font-fira-sans"
 cask "font-hasklig"
 cask "font-source-code-pro"
+cask "font-victor-mono"
 cask "gpg-suite"
 cask "graphiql"
 cask "hammerspoon"
@@ -112,6 +120,7 @@ cask "macdown"
 cask "mactex"
 cask "macvim"
 cask "ngrok"
+cask "rectangle"
 cask "slack"
 cask "table-tool"
 cask "tunnelblick"
@@ -122,15 +131,16 @@ cask "virtualbox-extension-pack"
 cask "zoomus"
 mas "1Password 7", id: 1333542190
 mas "Amphetamine", id: 937984704
+mas "CleanMyDrive 2", id: 523620159
 mas "Clocker", id: 1056643111
 mas "CopyClip", id: 595191960
+mas "Disk Clean Lite", id: 1407593317
 mas "Expressions", id: 913158085
 mas "Fotor Photo Editor", id: 503039729
 mas "GarageBand", id: 682658836
 mas "GIF Brewery 3", id: 1081413713
 mas "GIPHY CAPTURE", id: 668208984
 mas "Helium", id: 1054607607
-mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
 mas "Numbers", id: 409203825
@@ -139,4 +149,5 @@ mas "PicGIF Lite", id: 844918735
 mas "Pixelmator", id: 407963104
 mas "PopClip", id: 445189367
 mas "Reeder", id: 880001334
+mas "RunCat", id: 1429033973
 mas "Transmit", id: 1436522307
